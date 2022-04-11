@@ -5,14 +5,14 @@
 $umbra: true !default;
 
 // Font variables
-$paragraph-font: "'Avenir Next LT Pro', 'Lato', sans-serif";
-$header-font: "'Adelle', 'Times New Roman', serif";
-$monospace-font: "'Fira Mono', 'Cousine', 'Consolas', monospace";
+$paragraph-font: 'Microsoft JhengHei', 'Segoe UI Symbol', 'Avenir Next LT Pro', 'Lato', 'sans-serif';
+$header-font: 'Microsoft JhengHei', 'Segoe UI Symbol', 'Adelle', 'Times New Roman', 'serif';
+$monospace-font: 'Consolas', 'Microsoft JhengHei', 'Fira Mono', 'Cousine', 'monospace';
 
 // Cyrillic font support
 $cyrillic-font: false !default;
 @if $cyrillic-font {
-  $paragraph-font: "'Avenir Next Cyr', 'Lato', sans-serif";
+  $paragraph-font: 'Microsoft JhengHei', 'Avenir Next Cyr', 'Lato', 'sans-serif';
   $header-font: "'Adelle Cyrillic', 'Times New Roman', serif";
 }
 
@@ -31,6 +31,7 @@ $meta-content-color: #757575 !default;
 $link-color: #6bcafb !default;
 $mark-color: #107da2eb !default;
 $quote-color: #888e9c !default;
+$code-color: #fc4a89 !default;
 $code-bg-color: #282a36 !default;
 $code-border-color: #ffffff26 !default;
 $kbd-bg-color: #282a36 !default;
@@ -279,6 +280,13 @@ $mermaid-task-crit-border: #8f1d22 !default;
   src: local('Fira Mono Bold'), url('./ursine/FiraMono-Bold.ttf') format('ttf');
 }
 
+@font-face {
+  font-family: 'Microsoft JhengHei';
+  font-weight: bold;
+  font-style: initial;
+  src: local('Microsoft JhengHei') url('./ursine/msjh.ttf') format('ttf');
+}
+
 // IMPORTS //
 
 @import 'ursine/code-dracula';
@@ -326,12 +334,13 @@ html, body {
 body { font-size: 1em; }
 
 h1, h2, h3, h4, h5, h6 {
+  color: $text-color;
   font-family: unquote($header-font);
 }
 
 p { margin: .5rem 0; }
 
-a { color: $link-color; }
+a { color: $link-color; text-decoration: none; }
 
 del { color: $md-char-color; }
 
@@ -342,34 +351,45 @@ mark {
 }
 
 blockquote {
-  position: relative;
-  margin: 1rem 0 1rem 2rem;
-  font-family: unquote($header-font);
-  color: $quote-color;
+  display: flex;
+  padding-left: 0.55rem;
 
-  &::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    height: 100%;
-    width: .25rem;
-    background: $primary-color;
+  > blockquote {
+    padding-left: 0;
   }
+
+  & {
+    font-family: unquote($header-font);
+    color: $quote-color;
+  }
+
+  & {
+    border-left: 0.35rem solid #7eefbf;
+    background-color: #ebf3ed;
+  }
+
+  > h2 {
+    margin: .55rem 0 !important;
+  }
+
 }
 
+tt,
 code,
-.md-fences,
-tt {
+.md-fences {
   font-family: unquote($monospace-font);
   font-size: 1rem;
 }
 
 code {
   font-size: .9em;
-  border: 1px solid $code-border-color;
-  border-radius: .25rem;
   padding: 1px .25rem;
-  background: $code-bg-color;
+
+  // & {
+    // border: 1px solid $code-border-color;
+    // border-radius: .25rem;
+    // background: $code-bg-color;
+  // }
 }
 
 kbd {
@@ -401,12 +421,18 @@ td, th {
 
 // Writing area
 #write {
+  padding-top: 45px;
   position: static;
   width: 90%;
   max-width: 700px;
-  line-height: 1.6;
 
   transform: none;    // Windows-specific fix
+
+  & {
+    line-height: 2.15;
+    font-weight: 600;
+    color: $text-color;
+  }
 
   h1, h2, h3, h4, h5, h6, p, pre {
     width: auto;
@@ -414,10 +440,13 @@ td, th {
 
   // Headers
   h1, h2, h3, h4, h5, h6 {
+    position: relative;
+    line-height: initial;
+
     &::before {
       position: absolute;
       left: auto;
-      right: calc(100% + .75em);
+      right: calc(100% + .95em);
       top: 0;
       color: $md-char-color;
       font-size: 1rem;
@@ -429,6 +458,7 @@ td, th {
   h1 {
     font-size: 1.8rem;
     margin: 1rem 0;
+    border-bottom: 1px solid $text-color;
 
     &::before {
       content: 'H1';
@@ -491,11 +521,19 @@ td, th {
     line-height: inherit;
   }
 
+  code {
+    color: $code-color;
+  }
+
   // Lists
   ol, ul {
-    padding-left: 2rem;
     margin: .5rem 0;
+    padding-left: 2rem;
 
+    & {
+      line-height: 2.15;
+    }
+    
     > li {
       color: $primary-color;
       font-weight: bold;
@@ -513,6 +551,13 @@ td, th {
 
   ul {
     list-style-type: disc;
+  }
+
+  li {
+    &::marker {
+      font-size: 80%;
+      vertical-align: bottom;
+    }
   }
 
   // Checklists
@@ -1353,6 +1398,12 @@ footer.ty-footer {
         > strong > *, > b > * {
           font-weight: bold;
         }
+      }
+    }
+
+    ol, ul {
+      code {
+        color: $code-color;
       }
     }
   }

@@ -28,6 +28,7 @@ const buildStyles = () => {
 const includeAssets = () => {
   const regular = src([
     "ursine/*.png",
+    "ursine/*.ttf",
     "ursine/FiraMono-*.ttf",
     "ursine/Adelle-*.woff",
     "ursine/AvenirNextLTPro-*.woff"
@@ -35,6 +36,7 @@ const includeAssets = () => {
 
   const cyrillic = src([
     "ursine/*.png",
+    "ursine/*.ttf",
     "ursine/FiraMono-*.ttf",
     "ursine/AdelleCyrillic-*.woff",
     "ursine/AvenirNextCyr-*.woff"
@@ -42,6 +44,7 @@ const includeAssets = () => {
 
   const alt = src([
     "ursine/*.png",
+    "ursine/*.ttf",
     "ursine/FiraMono-*.ttf",
     "ursine/RobotoSlab-*.ttf",
     "ursine/OpenSans-*.ttf"
