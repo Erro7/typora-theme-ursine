@@ -364,8 +364,9 @@ blockquote {
   }
 
   & {
-    border-left: 0.35rem solid #7eefbf;
-    background-color: #ebf3ed;
+    border-left: 0.35rem solid #0000004f;
+    border-bottom: 1px solid #000f;
+    // background-color: #ccc;
   }
 
   > h2 {
