@@ -18,7 +18,12 @@ Code fence themes are adapted from CodeMirror's *3024 Day* and *Dracula* themes 
 
 ## Installation
 
-Decompress the latest release from [here](https://github.com/aCluelessDanny/typora-theme-ursine/releases). In Typora's preferences windows, go to `General -> Themes` and click on `Open Theme Folder`. Drop all the decompressed files and folders in there, and enjoy!~
+Decompress the latest release from [here](https://github.com/aCluelessDanny/typora-theme-ursine/releases). In Typora's preferences windows, go to `General -> Themes` and click on `Open Theme Folder`. Drop the decompressed folder of ursine in there, that create a files in there and enjoy!~
+
+```sh
+# Open the console here and run the following code
+"@import './ursine/dist/ursine/ursine-polar.css'" > ursine.css
+```
 
 #### Which one should I download?
 
